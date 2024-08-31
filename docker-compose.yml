@@ -4,7 +4,7 @@ services:
     user: root
     restart: always
     ports:
-      - "443:443"
+      - "127.0.0.1:8000:8000"
     environment:
       - UPLOAD_FOLDER=/var/uploads
       - DATABASE_URL=mysql+pymysql://ctfd:ctfd@db/ctfd
@@ -24,15 +24,15 @@ services:
         default:
         internal:
 
-  nginx:
-    image: nginx:stable
-    restart: always
-    volumes:
-      - ./conf/nginx/http.conf:/etc/nginx/nginx.conf
-    ports:
-      - 80:80
-    depends_on:
-      - ctfd
+#  nginx:
+#    image: nginx:stable
+#    restart: always
+#    volumes:
+#      - ./conf/nginx/http.conf:/etc/nginx/nginx.conf
+#    ports:
+#      - 80:80
+#    depends_on:
+#      - ctfd
 
   db:
     image: mariadb:10.11
